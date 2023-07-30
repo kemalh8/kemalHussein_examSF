@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    
+
+    {% if app.user %}
+
+       <h1>Hello {{ app.user.firstName}} - {{ app.user.lastName}} </h1>
+       <a href="{{path("app_employee")}}">List of employees</a><br><br>
+         
+        {% if  app.user and app.user.hasRole('ROLE_RH') %}
+
+           <div> Endeed, You have also <em>HR</em> role !! </div>
+           <p>Kemal,  here you have to create a command that allows HR to Register, update and delete ...</p>
+           
+          
+
+        {%  endif  %}
+
+          <a href="{{path('app_logout')}}">Logout</a>
+
+    {% endif %}
+
+
+    {% if app.user is null %}
+    <div class="container text-center">
+        <div>
+            <p>Do you have already an account ? <a href="{{path('app_login')}}">Login</a></p>
+        </div>
+        <div>
+            <p> Don't have an account ? <a href="{{path('app_register')}}">Sign up</a></p>
+        </div>
+    </div>
+    {% endif %}
+
+
+</div>
+{% endblock %}
