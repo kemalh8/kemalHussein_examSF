@@ -14,23 +14,23 @@
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
-    
-        <h1 class="h3 mb-3 font-weight-normal mb-3">Please sign in</h1>
+    <div class="text-center">
+        <h1 class="h3 mb-3 font-weight-normal mb-3 text-center">Please sign in</h1>
 
-        <label class="mb-3" for="inputEmail ">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <label class="text-center mb-3" for="inputEmail ">Email</label> 
+        <input class="text-center" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus><br>
         
-        <label class="mb-3" for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <label class="mb-3 text-center" for="inputPassword">Password</label>
+        <input class="mb-3 text-center" type="password" name="password" id="inputPassword" class="form-control text-center" autocomplete="current-password" required>
 
         <input  type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
-        >
+        ><br><br>
 
         <button class="btn btn-lg btn-primary mt-3" type="submit">
             Sign in
         </button>
-   
+   </div>
     </form>
  
 {% endblock %}

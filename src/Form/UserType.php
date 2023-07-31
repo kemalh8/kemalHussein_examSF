@@ -3,21 +3,46 @@
 namespace App\Form;
 
 use App\Entity\User;
+use PhpParser\Node\Expr\New_;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
+        
+        ->add('firstName')
+        ->add('lastName')
+        ->add('imageFile', FileType::class,
+        [
+            'label' => 'image (png,jpeg,wbp,gif)',
+            'mapped' => false,
+            'required' => false,
+            'constraints' => [
+                new File([
+                    'maxSize' => '1024k',
+                    'mimeTypes' => [
+                        'image/png',
+                        'image/jpeg',
+                        'image/webp',
+                        'image/gif',
+                    ],
+                    'mimeTypesMessage' => 'le fichier n\'est pas au bon format (png, jpeg, webp, gif)',
+                    'maxSizeMessage' => 'Le fichier est trop lourd (max: 5M)',
+                ])                
+            ]
+        ])
             ->add('email')
-            ->add('roles')
             ->add('password')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('image')
+            //->add('roles')
+            
+            
             ->add('endDate')
             ->add('sector')
             ->add('contractType')
