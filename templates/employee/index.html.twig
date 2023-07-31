@@ -8,8 +8,8 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="container ">
-   <h1 class=" text-center">List of Employees</h1>
+<div class="">
+   <h1 class=" text-center mb-4">List of Employees</h1>
 
     <table>
          <thead>
@@ -24,7 +24,7 @@
                 <th>EndDate</th>
                 <th>Sector</th>
                 <th>ContractType</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
           <tbody>
@@ -40,6 +40,8 @@
                 <td>{{ employee.endDate ? employee.endDate|date('Y-m-d') : '' }}</td>
                 <td>{{ employee.sector }}</td>
                 <td>{{ employee.contractType }}</td>
+                <td> <a class =" text-warning" href="{{path("app_user_edit",{'id':app.user.id})}}">Edit</a> <a class =" text-danger" href="{{path("app_user_delete",{'id':app.user.id})}}">Delete</a></td>
+
             </tr>
         {% else %}
             <tr>
