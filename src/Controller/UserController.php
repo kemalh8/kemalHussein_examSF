@@ -39,6 +39,9 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $encodedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($encodedPassword);
+
                 /** @var UploadedFile $imageFile */
                 $imageFile = $form->get('imageFile')->getData();
 

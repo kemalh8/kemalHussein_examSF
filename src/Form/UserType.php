@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UserType extends AbstractType
 {
@@ -40,7 +42,20 @@ class UserType extends AbstractType
             ]
         ])
             ->add('email')
-            ->add('password')
+            ->add('password', null, [
+                'constraints' => [
+                    new Length([
+                        'min' => 8,
+                        'minMessage' => 'Your password must be at least 8 characters long.',
+                         'max' => 100,
+                        'maxMessage' => 'Your password cannot be longer than 100 characters.',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^(?=.*[a-zA-Z])(?=.*\d).{8,}$/',
+                        'message' => 'Your password must contain at least one letter, one digit, and be at least 8 characters long.',
+                    ]),
+                ],
+            ])
             //->add('roles')
             ->add('endDate')
             ->add('sector', ChoiceType::class,
