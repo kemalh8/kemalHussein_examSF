@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 //#[Route('/user')]
 #[IsGranted('ROLE_RH')]
@@ -29,7 +31,7 @@ class UserController extends AbstractController
 
     #[IsGranted('ROLE_RH')]
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager,SluggerInterface $slugger ): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,SluggerInterface $slugger, UserPasswordHasherInterface $passwordHasher ): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);

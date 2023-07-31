@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use PhpParser\Node\Expr\New_;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -41,13 +42,30 @@ class UserType extends AbstractType
             ->add('email')
             ->add('password')
             //->add('roles')
-            
-            
             ->add('endDate')
-            ->add('sector')
-            ->add('contractType')
+            ->add('sector', ChoiceType::class,
+            [
+                'label' => 'Activity area',
+                'choices' => [
+                                'HR' => 'HR',
+                                'Computer science' => 'Computer science',
+                                'Accounting' => 'Accounting',
+                                'Direction' => 'Direction',
+                            ]
+
+            ])
+            ->add('contractType', ChoiceType::class,
+            [
+                'label' => 'Type of contract',
+                'choices' => [
+                                'CDI' => 'CDI',
+                                'CDD' => 'CDD',
+                                'Interim' => 'Interim',
+                            ]
+
+            ])
         ;
-    }
+    }  
 
     public function configureOptions(OptionsResolver $resolver): void
     {
