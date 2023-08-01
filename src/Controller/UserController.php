@@ -15,7 +15,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 //#[Route('/user')]
 #[IsGranted('ROLE_RH')]
@@ -110,6 +110,10 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
+        if ($user->hasRole('ROLE_ADMIN') || $user->hasRole('ROLE_RH')) {
+            throw new AccessDeniedHttpException("You are not allowed to delete this user.");
+        }
+
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
