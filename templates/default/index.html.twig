@@ -13,8 +13,8 @@
 
     {% if app.user %}
 
-       <h1>Hello {{ app.user.firstName}} - {{ app.user.lastName}} </h1>
-       <a href="{{path("app_user_index")}}">List of employees</a><br><br>
+       <h1>Hello {{ app.user.firstName}} - {{ app.user.lastName}} See the list of employees below</h1>
+   
          
         {% if  app.user and app.user.hasRole('ROLE_RH') %}
 
@@ -24,6 +24,8 @@
           
 
         {%  endif  %}
+
+            <a href="{{path("app_user_index")}}">List of employees</a><br><br>
 
           <a href="{{path('app_logout')}}">Logout</a>
 
@@ -36,7 +38,7 @@
             <p>Do you have already an account ? <a href="{{path('app_login')}}">Login</a></p>
         </div>
         <div>
-            <p> Don't have an account ? <a href="{{path('app_register')}}">Sign up</a></p>
+            <p> Don't have an account ? <a href="{{path('app_user_new')}}">Sign up</a></p>
         </div>
     </div>
     {% endif %}

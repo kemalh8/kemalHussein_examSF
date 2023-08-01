@@ -18,12 +18,15 @@
                 <th>EndDate</th>
                 <th>Sector</th>
                 <th>ContractType</th>
+                 {% if app.user.hasRole('RH') %}
                 <th>actions</th>
+                 {% endif %}
+
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
-        {%  if app.user and app.user.hasRole('ROLE_RH') %}
+        
             <tr>
                 <td class="my-link text-danger mb-4" >{{ user.id }}</td>
                 <td class="  mb-4">{{ user.email }}</td>
@@ -35,14 +38,17 @@
                 <td class=" mb-4">{{ user.endDate ? user.endDate|date('Y-m-d') : '' }}</td>
                 <td class="  mb-4">{{ user.sector }}</td>
                 <td class=" mb-4">{{ user.contractType }}</td>
+                {% if app.user.hasRole('RH') %}
                 <td>
+                    
                     <a  class="my-link text-primary" href="{{ path('app_user_show', {'id': user.id}) }}">Show</a>
                     <a class="my-link text-warning" href="{{ path('app_user_edit', {'id': user.id}) }}">Edit</a>
                     <a class="my-link text-danger" href="{{ path('app_user_delete', {'id': user.id}) }}">Delete</a>
 
                 </td>
+                {% endif %}
             </tr>
-            {%  endif %}
+           
         {% else %}
             <tr>
                 <td colspan="11">no records found</td>
