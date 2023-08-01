@@ -11,7 +11,7 @@
                 <a class="nav-link" href="{{path('app_default')}}">HOME</a>
             </li>
               <li class="nav-item">
-                <a class="nav-link "  href="{{path('app_user_index')}}">LIST OF EMPLOYEES</a>
+                <a class="nav-link "  href="{{path('app_user_index')}}">EMPLOYEES</a>
               </li>
           {% if is_granted('ROLE_RH')%}
                 <li class="nav-item">
@@ -21,7 +21,7 @@
                 <a class="nav-link" href="{{path("app_user_delete",{'id': app.user.id}) }}">DELETE</a>
               </li>
                 <li class="nav-item">
-                <a class="nav-link" href="{{path("app_user_new", {'id': app.user.id}) }}">REGISTER</a>
+                <a class="nav-link" href="{{path("app_user_new", {'id': app.user.id}) }}">ADD</a>
               </li>
           {% endif %} 
               

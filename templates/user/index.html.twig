@@ -34,7 +34,7 @@
                 <td class="  mb-4">{{ user.password }}</td>
                 <td class="  mb-4">{{ user.firstName }}</td>
                 <td class="  mb-4">{{ user.lastName }}</td>
-                <td class=" mb-4">{{ user.image }}</td>
+                <td class=" mb-4"><img src="{{asset('uploads/user_images/'~ user.image) }}"  width="160" alt="user image"</td>
                 <td class=" mb-4">{{ user.endDate ? user.endDate|date('Y-m-d') : '' }}</td>
                 <td class="  mb-4">{{ user.sector }}</td>
                 <td class=" mb-4">{{ user.contractType }}</td>

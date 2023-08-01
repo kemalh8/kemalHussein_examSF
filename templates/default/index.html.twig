@@ -13,15 +13,10 @@
 
     {% if app.user %}
 
-       <h1>Hello {{ app.user.firstName}} - {{ app.user.lastName}} See the list of employees below</h1>
-   
-         
+       <h1>WELCOME {{ app.user.firstName}} - {{ app.user.lastName}} !</h1>
+
         {% if  app.user and app.user.hasRole('ROLE_RH') %}
-
-           <div> Endeed, You have also <em>HR</em> role !! </div>
-           
-          
-
+           <div>  You have also <em>HR</em> role! so you can add, modify and delete users  </div>
         {%  endif  %}
 
             <a href="{{path("app_user_index")}}">List of employees</a><br><br>
@@ -30,18 +25,16 @@
 
     {% endif %}
 
-
     {% if app.user is null %}
-    <div class="container text-center">
-        <div>
-            <p>Do you have already an account ? <a href="{{path('app_login')}}">Login</a></p>
+        <div class="container text-center">
+            <div>
+                <p>Do you have already an account ? <a href="{{path('app_login')}}">Login</a></p>
+            </div>
+            
+            <div>
+                <p> Don't have an account ? <a href="{{path('app_user_new')}}">Sign up</a></p>
+            </div>
         </div>
-        <div>
-            <p> Don't have an account ? <a href="{{path('app_user_new')}}">Sign up</a></p>
-        </div>
-    </div>
     {% endif %}
-
-
 </div>
 {% endblock %}

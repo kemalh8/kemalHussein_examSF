@@ -24,7 +24,7 @@ class UserType extends AbstractType
         ->add('lastName')
         ->add('imageFile', FileType::class,
         [
-            'label' => 'image (png,jpeg,wbp,gif)',
+            'label' => 'image (png,jpeg,wbp,gif,jpg)',
             'mapped' => false,
             'required' => false,
             'constraints' => [
@@ -35,8 +35,9 @@ class UserType extends AbstractType
                         'image/jpeg',
                         'image/webp',
                         'image/gif',
+                        'image/jpg',
                     ],
-                    'mimeTypesMessage' => 'le fichier n\'est pas au bon format (png, jpeg, webp, gif)',
+                    'mimeTypesMessage' => 'le fichier n\'est pas au bon format (png, jpeg, webp, gif, jpg)',
                     'maxSizeMessage' => 'Le fichier est trop lourd (max: 5M)',
                 ])                
             ]
