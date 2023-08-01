@@ -17,8 +17,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-//#[Route('/user')]
-#[IsGranted('ROLE_RH')]
+#[Route('/user')]
+
 class UserController extends AbstractController
 {
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
@@ -29,8 +29,9 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[IsGranted('ROLE_RH')]
+    
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_RH')]
     public function new(Request $request, EntityManagerInterface $entityManager,SluggerInterface $slugger, UserPasswordHasherInterface $passwordHasher ): Response
     {
         $user = new User();
@@ -89,7 +90,10 @@ class UserController extends AbstractController
         ]);
     }
 
+    
+    
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_RH')]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserType::class, $user);
@@ -107,7 +111,10 @@ class UserController extends AbstractController
         ]);
     }
 
+    
+    
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_RH')]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($user->hasRole('ROLE_ADMIN') || $user->hasRole('ROLE_RH')) {
