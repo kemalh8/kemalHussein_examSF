@@ -18,7 +18,7 @@
                 <th>EndDate</th>
                 <th>Sector</th>
                 <th>ContractType</th>
-                 {% if app.user.hasRole('RH') %}
+                {% if is_granted('ROLE_RH') %}
                 <th>actions</th>
                  {% endif %}
 
@@ -38,7 +38,7 @@
                 <td class=" mb-4">{{ user.endDate ? user.endDate|date('Y-m-d') : '' }}</td>
                 <td class="  mb-4">{{ user.sector }}</td>
                 <td class=" mb-4">{{ user.contractType }}</td>
-                {% if app.user.hasRole('RH') %}
+                {% if is_granted('ROLE_RH') %}
                 <td>
                     
                     <a  class="my-link text-primary" href="{{ path('app_user_show', {'id': user.id}) }}">Show</a>
