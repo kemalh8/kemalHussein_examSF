@@ -3,23 +3,24 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
+<div class="example-wrapper mt-4">
     <h1 class=" text-center mb-4 mt-4">LIST OF EMPLOYEES</h1>
 
-    <table class="table">
+    <table class="table example-wrapper mt-4">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Image</th>
-                <th>EndDate</th>
-                <th>Sector</th>
-                <th>ContractType</th>
+                <th class=" mb-4" >Id</th>
+                <th class=" mb-4">Email</th>
+                <th class=" mb-4">Roles</th>
+                <th class=" mb-4">Password</th>
+                <th class=" mb-4">FirstName</th>
+                <th class=" mb-4">LastName</th>
+                <th class=" mb-4">Image</th>
+                <th class=" mb-4">EndDate</th>
+                <th class=" mb-4">Sector</th>
+                <th class=" mb-4">ContractType</th>
                 {% if is_granted('ROLE_RH') %}
-                <th>actions</th>
+                <th class=" mb-4">actions</th>
                  {% endif %}
 
             </tr>
@@ -28,7 +29,7 @@
         {% for user in users %}
         
             <tr>
-                <td class="my-link text-danger mb-4" >{{ user.id }}</td>
+                <td class="mb_4" >{{ user.id }}</td>
                 <td class="  mb-4">{{ user.email }}</td>
                 <td class="  mb-4">{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td class="  mb-4">{{ user.password }}</td>
@@ -57,5 +58,8 @@
         </tbody>
     </table>
 
+    {% if is_granted('ROLE_RH') %}
     <a href="{{ path('app_user_new') }}">CREATE A NEW USER</a>
+    {% endif %}
+</div>
 {% endblock %}

@@ -17,11 +17,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
-/*#[Route('/user')]*/
-#[IsGranted('ROLE_USER')]
+
+#[Route('/user')]
 class UserController extends AbstractController
 {
-    
+    #[IsGranted('ROLE_USER')]
     #[Route('/list', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {

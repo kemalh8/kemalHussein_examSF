@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello DefaultController!{% endblock %}
@@ -8,7 +9,7 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
+<div class="example-wrapper mt-4">
     
 
     {% if app.user %}
@@ -19,9 +20,9 @@
            <div>  You have also <em>HR</em> role! so you can add, modify and delete users  </div>
         {%  endif  %}
 
-            <a href="{{path("app_user_index")}}">List of employees</a><br><br>
+           <p>See list of <a  href="{{path("app_user_index")}}">employees</a></p><br><br>
 
-          <a href="{{path('app_logout')}}">Logout</a>
+
 
     {% endif %}
 

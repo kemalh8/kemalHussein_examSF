@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Regex;
 
+
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -42,7 +43,7 @@ class UserType extends AbstractType
                 ])                
             ]
         ])
-            ->add('email')
+            ->add('email' )
             ->add('password', null, [
                 'constraints' => [
                     new Length([
